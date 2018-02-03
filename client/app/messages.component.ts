@@ -13,7 +13,7 @@ import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 })
 
 export class MessagesComponent implements OnInit {
-  constructor( private apiService: ApiService, private route: ActivatedRoute ) {}
+  constructor( public apiService: ApiService, public route: ActivatedRoute ) {}
 
   ngOnInit() {
     const userId = this.route.snapshot.params.id;

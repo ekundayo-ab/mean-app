@@ -34,7 +34,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ProfileComponent implements OnInit {
   profile: Profile;
 
-  constructor( private apiService: ApiService, private route: ActivatedRoute ) {}
+  constructor( public apiService: ApiService, public route: ActivatedRoute ) {}
 
   ngOnInit() {
     const id = this.route.snapshot.params.id;
@@ -45,5 +45,7 @@ export class ProfileComponent implements OnInit {
 }
 
 interface Profile {
-  email: '';
+  name: string;
+  email: string;
+  description: string;
 }

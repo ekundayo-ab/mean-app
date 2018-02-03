@@ -31,7 +31,7 @@ import { AuthService } from './auth.service';
 })
 
 export class PostComponent {
-  constructor( private apiService: ApiService, private authService: AuthService ) {}
+  constructor( public apiService: ApiService, public authService: AuthService ) {}
   postMessage: String = '';
 
   post() {

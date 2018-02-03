@@ -25,11 +25,17 @@ import { AuthService } from './auth.service';
   `,
 })
 export class LoginComponent {
-  constructor( private authService: AuthService ) {}
+  constructor( public authService: AuthService ) {}
 
-  loginData: Object = {};
+  loginData: LoginData;
 
   post() {
     this.authService.loginUser(this.loginData);
   }
+
+}
+interface LoginData {
+  name: string;
+  password: string;
+  email: string;
 }
