@@ -6,9 +6,16 @@ import { AuthService } from './auth.service';
   templateUrl: 'register.component.html',
 })
 export class RegisterComponent {
-  constructor( public authService: AuthService ) {}
-
   registerData: RegisterData;
+
+  constructor( public authService: AuthService ) {
+    this.registerData = {
+      email: '',
+      password: '',
+      name: '',
+      description: ''
+    };
+  }
 
   post() {
     this.authService.registerUser(this.registerData);

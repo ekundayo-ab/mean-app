@@ -25,9 +25,15 @@ import { AuthService } from './auth.service';
   `,
 })
 export class LoginComponent {
-  constructor( public authService: AuthService ) {}
-
   loginData: LoginData;
+
+  constructor( public authService: AuthService ) {
+    this.loginData = {
+      password: '',
+      email: ''
+    };
+  }
+
 
   post() {
     this.authService.loginUser(this.loginData);
@@ -35,7 +41,6 @@ export class LoginComponent {
 
 }
 interface LoginData {
-  name: string;
   password: string;
   email: string;
 }
