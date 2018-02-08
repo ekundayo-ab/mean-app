@@ -18,8 +18,6 @@ router.post('/post', auth.checkAuthenticated, (req, res) => {
 
   const post = new Post(postData);
 
-  console.log(req.body);
-
   post.save((err, result) => {
     if (err) {
       console.error('error saving post');
