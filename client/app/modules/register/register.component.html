@@ -18,7 +18,7 @@
       </mat-input-container>
 
       <mat-input-container class="full-width">
-        <input matInput [(ngModel)]="registerData.password" placeholder="Password" [formControl]="password" [errorStateMatcher]="matcher">
+        <input matInput type="password" [(ngModel)]="registerData.password" placeholder="Password" [formControl]="password" [errorStateMatcher]="matcher">
         <mat-hint>Enter your password</mat-hint>
         <mat-error *ngIf="password.hasError('required')">
           Password is <strong>required</strong>
@@ -34,7 +34,7 @@
       </mat-input-container>
 
       <mat-input-container class="full-width">
-        <input matInput type="password" [(ngModel)]="registerData.description" placeholder="description" [formControl]="description" [errorStateMatcher]="matcher">
+        <input matInput [(ngModel)]="registerData.description" placeholder="description" [formControl]="description" [errorStateMatcher]="matcher">
         <mat-hint>Enter description</mat-hint>
         <mat-error *ngIf="description.hasError('required')">
           Description is <strong>required</strong>
