@@ -1,0 +1,10 @@
+.register-card {
+  display: flex;
+  flex-direction: column;
+  margin: 50px auto;
+  width: 700px;
+}
+
+.full-width {
+  width: 100%;
+}

@@ -1,0 +1,47 @@
+<mat-card class="register-card">
+  <mat-card-header>
+    <mat-card-title>
+      <h4>Register New User</h4>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+  <form>
+    <mat-input-container class="full-width">
+        <input matInput [(ngModel)]="registerData.email" placeholder="Email" [formControl]="email" [errorStateMatcher]="matcher">
+        <mat-hint>Enter valid email address</mat-hint>
+        <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
+          Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="email.hasError('required')">
+          Email is <strong>required</strong>
+        </mat-error>
+      </mat-input-container>
+
+      <mat-input-container class="full-width">
+        <input matInput [(ngModel)]="registerData.password" placeholder="Password" [formControl]="password" [errorStateMatcher]="matcher">
+        <mat-hint>Enter your password</mat-hint>
+        <mat-error *ngIf="password.hasError('required')">
+          Password is <strong>required</strong>
+        </mat-error>
+      </mat-input-container>
+
+      <mat-input-container class="full-width">
+        <input matInput [(ngModel)]="registerData.name" placeholder="Name" [formControl]="name" [errorStateMatcher]="matcher">
+        <mat-hint>Enter your name</mat-hint>
+        <mat-error *ngIf="name.hasError('required')">
+          Name is <strong>required</strong>
+        </mat-error>
+      </mat-input-container>
+
+      <mat-input-container class="full-width">
+        <input matInput type="password" [(ngModel)]="registerData.description" placeholder="description" [formControl]="description" [errorStateMatcher]="matcher">
+        <mat-hint>Enter description</mat-hint>
+        <mat-error *ngIf="description.hasError('required')">
+          Description is <strong>required</strong>
+        </mat-error>
+      </mat-input-container>
+    <br><br>
+    <button (click)="post()" mat-raised-button color="primary">Register</button>
+  </form>
+  </mat-card-content>
+</mat-card>

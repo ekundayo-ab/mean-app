@@ -1,4 +1,4 @@
-import { RegisterComponent } from './register.component';
+import { RegisterComponent } from './modules/register/register.component';
 import { LoginComponent } from './modules/login/login.component';
 import { UsersComponent } from './users.component';
 import { ProfileComponent } from './profile.component';
