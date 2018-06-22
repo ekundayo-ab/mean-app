@@ -5,6 +5,7 @@ import { BaseService } from './base.service';
 
 @Injectable()
 export class ApiService extends BaseService {
+  messages = [];
   users = [];
   path = `${environment.path}/api`;
 
@@ -13,6 +14,7 @@ export class ApiService extends BaseService {
   getMessages(userId) {
     return this.http.get<any>(`${this.path}/posts/${userId}`)
       .map((res) => {
+        this.messages = res;
         return res;
       }).catch(this.handleError);
   }
