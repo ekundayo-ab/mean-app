@@ -1,23 +1,27 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
+import { BaseService } from './base.service';
 
 @Injectable()
-export class ApiService {
-  messages = [];
+export class ApiService extends BaseService {
   users = [];
   path = `${environment.path}/api`;
 
-  constructor (private http: HttpClient ) {}
+  constructor (private http: HttpClient) { super(); }
 
   getMessages(userId) {
-    this.http.get<any>(`${this.path}/posts/${userId}`).subscribe(res => {
-      this.messages = res;
-    });
+    return this.http.get<any>(`${this.path}/posts/${userId}`)
+      .map((res) => {
+        return res;
+      }).catch(this.handleError);
   }
 
   postMessage(message) {
-    this.http.post<any>(`${this.path}/post`, message).subscribe(res => {});
+    return this.http.post(`${this.path}/post`, message)
+      .map((res: Response) => {
+        return res;
+      }).catch(this.handleError);
   }
 
   getUsers() {
@@ -27,6 +31,9 @@ export class ApiService {
   }
 
   getProfile(id) {
-    return this.http.get<any>(`${this.path}/users/${id}`);
+    return this.http.get<any>(`${this.path}/users/${id}`)
+      .map((res: Response) => {
+        return res;
+      }).catch(this.handleError);
   }
 }

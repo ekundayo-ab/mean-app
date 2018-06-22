@@ -45,8 +45,8 @@ export class LoginComponent {
           const { user } = res;
           this.toastr.success('Login successful!', user.email);
           this.router.navigate(['/'])
-        }).catch((err) => {
-          this.toastr.error('Login failed!', err.message);
+        }).catch((res) => {
+          this.toastr.error('Login failed!', res.error.message);
         })
     }
     return;

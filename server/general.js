@@ -21,9 +21,9 @@ router.post('/post', auth.checkAuthenticated, (req, res) => {
   post.save((err, result) => {
     if (err) {
       console.error('error saving post');
-      return res.status(201).send({ message: 'post created'});
+      return res.status(500).send({ message: 'post creation failed'});
     }
-    return res.status(200).send({ message: 'Ok' });
+    return res.status(200).send({ message: 'Ok', post: result });
   })
 });
 

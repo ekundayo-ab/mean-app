@@ -1,10 +1,11 @@
-import { Http, Response } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import { BaseService } from './base.service';
+import { AuthResponse } from '../interfaces/authResponse';
 
 @Injectable()
 export class AuthService extends BaseService {
@@ -13,7 +14,7 @@ export class AuthService extends BaseService {
 
   TOKEN_KEY = 'token';
 
-  constructor (private http: Http) { super() }
+  constructor (private http: HttpClient) { super() }
 
   get token() {
     return localStorage.getItem(this.TOKEN_KEY);
@@ -28,18 +29,19 @@ export class AuthService extends BaseService {
   }
 
   registerUser(registerData) {
-    return this.http.post(`${this.path}/register`, registerData)
-      .map((res: Response) => {
-        this.saveToken(res.json().token);
-        return res.json()
+    return this.http.post<AuthResponse>(`${this.path}/register`, registerData)
+      .map((res) => {
+        this.saveToken(res.token);
+        return res;
       }).catch(this.handleError);
   }
 
   loginUser(loginData) {
-    return this.http.post(`${this.path}/login`, loginData)
-      .map((res: Response) => {
-        this.saveToken(res.json().token);
-        return res.json()
+    return this.http.post<AuthResponse>(`${this.path}/login`, loginData)
+      .map((res) => {
+        this.saveToken(res.token);
+        sessionStorage.setItem('id', res.user._id);
+        return res;
       }).catch(this.handleError);
   }
 

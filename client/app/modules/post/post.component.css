@@ -1,0 +1,17 @@
+.message-page {
+  display: flex;
+  flex-direction: row;
+}
+
+.message-form {
+  flex: 1 1 auto;
+}
+
+.message-list {
+  flex: 1 1 auto;
+}
+
+.full-width {
+  margin-bottom: 50px;
+  width: 100%;
+}

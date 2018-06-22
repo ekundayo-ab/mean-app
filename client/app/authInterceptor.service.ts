@@ -1,6 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpInterceptor } from '@angular/common/http/src/interceptor';
+import { HttpInterceptor } from '@angular/common/http';
 import { AuthService } from './services/auth.service';
 
 @Injectable()
