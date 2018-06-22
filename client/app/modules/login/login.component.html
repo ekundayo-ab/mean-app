@@ -18,7 +18,7 @@
     </mat-input-container>
 
     <mat-input-container class="full-width">
-      <input matInput [(ngModel)]="loginData.password" placeholder="Password" [formControl]="password" [errorStateMatcher]="matcher">
+      <input matInput type="password" [(ngModel)]="loginData.password" placeholder="Password" [formControl]="password" [errorStateMatcher]="matcher">
       <mat-hint>Enter your password</mat-hint>
       <mat-error *ngIf="password.hasError('required')">
         Password is <strong>required</strong>
