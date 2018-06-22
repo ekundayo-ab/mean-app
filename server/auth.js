@@ -4,13 +4,14 @@ const User = require('./models/User');
 const express = require('express');
 const router = express.Router();
 
-router.post('/register', (req, res) => {
+router.post('/register', async (req, res) => {
   // this should be validated and only needed data should be taken from
   // request body, password should be encrypted
   const userData = req.body;
+  const foundUser = await User.findOne({ email: userData.email });
+  if (foundUser) return res.status(409).send({ message: 'Email taken!'});
 
   var user = new User(userData);
-
   user.save((err, newUser) => {
     if (err) return res.status(500).send({ message: 'Error saving user'});
 
