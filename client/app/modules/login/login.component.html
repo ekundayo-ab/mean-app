@@ -1,0 +1,32 @@
+<mat-card class="login-card">
+  <mat-card-header>
+    <mat-card-title>
+      <h4>Login</h4>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+  <form>
+    <mat-input-container class="full-width">
+      <input matInput [(ngModel)]="loginData.email" placeholder="Email" [formControl]="email" [errorStateMatcher]="matcher">
+      <mat-hint>Enter valid email address</mat-hint>
+      <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="email.hasError('required')">
+        Email is <strong>required</strong>
+      </mat-error>
+    </mat-input-container>
+
+    <mat-input-container class="full-width">
+      <input matInput [(ngModel)]="loginData.password" placeholder="Password" [formControl]="password" [errorStateMatcher]="matcher">
+      <mat-hint>Enter your password</mat-hint>
+      <mat-error *ngIf="password.hasError('required')">
+        Password is <strong>required</strong>
+      </mat-error>
+    </mat-input-container>
+
+    <br><br>
+    <button (click)="post()" mat-raised-button password="email" color="primary">Login</button>
+  </form>
+  </mat-card-content>
+</mat-card>

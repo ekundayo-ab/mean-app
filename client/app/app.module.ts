@@ -1,8 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import {
@@ -11,27 +12,24 @@ import {
   MatToolbarModule,
   MatInputModule,
   MatListModule,
+  MatIconModule,
+  ErrorStateMatcher,
+  ShowOnDirtyErrorStateMatcher,
 } from '@angular/material';
+import { ToastrModule } from 'ngx-toastr';
 
 import { AppComponent } from './app.component';
 import { MessagesComponent } from './messages.component';
 import { RegisterComponent } from './register.component';
-import { LoginComponent } from './login.component';
-
-import { ApiService } from './api.service';
-import { AuthService } from './auth.service';
+import { LoginComponent } from './modules/login/login.component';
 import { UsersComponent } from './users.component';
 import { ProfileComponent } from './profile.component';
-import { PostComponent } from './post.component';
-import { AuthInterceptorService } from './authInterceptor.service';
+import { PostComponent } from './modules/post/post.component';
 
-const routes = [
-  { path: '', component: PostComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'users', component: UsersComponent },
-  { path: 'users/:id', component: ProfileComponent }
-];
+import { ApiService } from './services/api.service';
+import { AuthService } from './services/auth.service';
+import { AuthInterceptorService } from './authInterceptor.service';
+import { routes } from './app-routes';
 
 @NgModule({
   declarations: [
@@ -41,20 +39,24 @@ const routes = [
     LoginComponent,
     UsersComponent,
     ProfileComponent,
-    PostComponent
+    PostComponent,
   ],
   imports: [
     BrowserModule,
     MatButtonModule,
     MatCardModule,
     MatToolbarModule,
-    RouterModule.forRoot(routes),
+    MatIconModule,
     MatInputModule,
+    CommonModule,
     BrowserAnimationsModule,
     FormsModule,
     MatListModule,
     HttpClientModule,
-    HttpModule
+    HttpModule,
+    ReactiveFormsModule,
+    RouterModule.forRoot(routes),
+    ToastrModule.forRoot(),
   ],
   providers: [
     ApiService,
@@ -63,7 +65,8 @@ const routes = [
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
       multi: true
-    }
+    },
+    {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}
   ],
   bootstrap: [AppComponent]
 })

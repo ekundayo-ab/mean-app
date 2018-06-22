@@ -28,7 +28,7 @@ app.get('*', (req, res) => {
 const local = 'mongodb://localhost:27017/mean-app';
 const remote = 'mongodb://test:test@ds121268.mlab.com:21268/ekundayo-meanapp';
 
-mongoose.connect(remote, (err) => {
+mongoose.connect(local, (err) => {
   if (!err)
     console.log('connected to mongo');
 });
